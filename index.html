@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>StudyHub — обмен знаниями</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;700&family=Unbounded:wght@600;800&display=swap">
+<style>
+:root{--bg:#f6f1ff;--gl:#ddd2f7;--card:#fff;--tx:#14162b;--ln:#14162b;--sh:#14162b;--mu:#585b78;--ac2:#efe8ff;--ik:#14162b;--y:#ffd93d;--k:#ffd93d;--fh:"Unbounded","Arial Black",system-ui,sans-serif;--fb:"Golos Text",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14162b;--gl:#262a52;--card:#1f2347;--tx:#f4efff;--ln:#9a9fe6;--sh:#05060f;--mu:#aeb2d9;--ac2:#2a2f5c}}
+:root[data-theme="dark"]{--bg:#14162b;--gl:#262a52;--card:#1f2347;--tx:#f4efff;--ln:#9a9fe6;--sh:#05060f;--mu:#aeb2d9;--ac2:#2a2f5c}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;color:var(--tx);font:16px/1.5 var(--fb);background-color:var(--bg);background-image:radial-gradient(var(--gl) 1.6px,transparent 1.7px);background-size:20px 20px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+.w{max-width:960px;min-height:100dvh;margin:0 auto;padding:14px}
+header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px}
+h1{margin:0;font:800 30px/1 var(--fh);letter-spacing:-1px;text-shadow:3px 3px 0 var(--sh)}
+h1 span{-webkit-text-stroke:6px var(--ln);paint-order:stroke fill}
+h1 span:nth-child(1){color:#ff7a7a}h1 span:nth-child(2){color:#ffb347}h1 span:nth-child(3){color:#ffd93d}h1 span:nth-child(4){color:#4fe0a8}h1 span:nth-child(5){color:#6ea8ff}h1 span:nth-child(6){color:#b99aff}h1 span:nth-child(7){color:#ff8fc7}h1 span:nth-child(8){color:#5fd8f0}
+h3{font:600 17px/1.25 var(--fh);margin:14px 0 6px}
+button,input,select,textarea{font:inherit;color:inherit}textarea{resize:vertical}
+.b{background:var(--y);color:var(--ik);border:2px solid var(--ln);border-radius:12px;padding:9px 14px;cursor:pointer;font-weight:700;box-shadow:3px 3px 0 var(--sh);transition:transform .12s,box-shadow .12s}
+.g{background:var(--card);color:var(--tx);border:2px solid var(--ln);border-radius:12px;padding:7px 12px;cursor:pointer;font-weight:500}
+.b:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--sh)}.b:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--sh)}.g:active{transform:translateY(1px)}
+input,select,textarea{width:100%;padding:10px 12px;border:2px solid var(--ln);border-radius:12px;background:var(--card);margin:6px 0}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:3px solid #6ea8ff;outline-offset:2px}
+.tabs{display:flex;gap:8px;overflow-x:auto;margin:0 -14px;padding:12px 14px 10px;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:5}
+.tabs button{display:flex;align-items:center;gap:7px;white-space:nowrap;background:var(--card);border:2px solid var(--ln);border-radius:999px;padding:6px 14px;cursor:pointer;font-weight:500}
+.tabs button::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--k);border:1.5px solid var(--ln)}
+.tabs button.on{background:var(--k);color:var(--ik);font-weight:700;box-shadow:3px 3px 0 var(--sh);transform:translateY(-1px)}
+.tabs button.on::before{background:var(--ik)}
+.hero{background:var(--y);color:var(--ik);border:2px solid var(--ln);border-radius:18px;box-shadow:5px 5px 0 var(--sh);padding:16px;margin:6px 0 6px}
+.hero strong{display:block;font:800 21px/1.2 var(--fh);margin-bottom:8px}
+.hero b{display:inline-block;background:var(--ik);color:var(--y);border-radius:8px;padding:0 8px;animation:pop .6s .3s cubic-bezier(.3,1.6,.5,1) both}
+@keyframes pop{from{transform:scale(.6) rotate(-6deg);opacity:0}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.hero b{animation:none}.b{transition:none}}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px;margin-top:12px}
+.c{background:var(--card);border:2px solid var(--ln);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;gap:8px;padding:0 0 12px;box-shadow:4px 4px 0 var(--sh)}
+.c>*{margin-inline:12px}
+.c>small:first-child{margin:0 0 2px;padding:6px 12px;background:var(--k);color:var(--ik);border-bottom:2px solid var(--ln);font:600 12px/1.3 var(--fh)}
+.c>h3:first-child{margin-top:12px}
+.c small{color:var(--mu)}.c h3{font:700 15px/1.3 var(--fb);margin-block:0}
+.c>h3:first-child{margin-top:12px}
+.gr{display:inline-grid;place-items:center;min-width:34px;height:34px;padding:0 5px;margin-right:7px;vertical-align:middle;background:var(--y);border:2px solid var(--ln);border-radius:50%;color:var(--ik);font:700 12px/1 var(--fh);transform:rotate(-8deg)}
+.ev{display:flex;gap:12px;align-items:center;background:var(--card);border:2px solid var(--ln);border-radius:14px;padding:10px 12px;margin:10px 0;box-shadow:4px 4px 0 var(--sh)}
+.ev i{flex:none;background:var(--y);color:var(--ik);border:2px solid var(--ln);border-radius:10px;font:700 12px/1.25 var(--fb);font-style:normal;padding:8px;min-width:84px;text-align:center;transform:rotate(-3deg)}
+.m{position:fixed;inset:0;background:#0b0d22bb;display:none;align-items:center;justify-content:center;padding:16px;z-index:20}
+.m.on{display:flex}.vc{position:relative;overflow:hidden;user-select:none;-webkit-user-select:none;padding:4px}.wm{position:absolute;inset:-20%;transform:rotate(-25deg);opacity:.13;font-size:13px;line-height:2.4;pointer-events:none;word-break:break-all;overflow:hidden}
+.m>div{max-height:88vh;max-height:88dvh;overflow:auto;background:var(--card);border:2px solid var(--ln);border-radius:18px;padding:16px;width:100%;max-width:380px;box-shadow:6px 6px 0 var(--sh)}
+.m>div>h3:first-child{margin-top:0}
+.row{display:flex;gap:6px;margin:6px 0}.row .g,.row .b{flex:1}
+.ai{background:var(--card);border:2px solid var(--ln);border-radius:16px;padding:12px;margin-top:10px;box-shadow:4px 4px 0 var(--sh)}
+.msg{white-space:pre-wrap;padding:8px 12px;border-radius:12px;margin:6px 0;background:var(--ac2);border:1.5px solid var(--ln)}.msg.me{background:var(--y);color:var(--ik)}
+#t{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--y);color:var(--ik);border:2px solid var(--ln);box-shadow:3px 3px 0 var(--sh);font-weight:700;padding:10px 16px;border-radius:12px;display:none;z-index:30}
+@media print{.vc{display:none}}
+</style></head><body><div class="w">
+<header><h1><span>S</span><span>t</span><span>u</span><span>d</span><span>y</span><span>H</span><span>u</span><span>b</span></h1><div id="u"></div></header>
+<div class="hero"><strong>Материалы от учеников для учеников</strong>Подписка <b>≈ 500 ₸ в месяц</b> вместо 2000 ₸ в неделю за пробники.</div>
+<div class="tabs" id="tabs"></div>
+<input id="q" placeholder="Поиск по названию…">
+<div id="main"></div>
+<p style="color:var(--mu);font-size:13px">Прототип: каталог — примеры, даты конкурсов ориентировочные. Отзывы и материалы пока хранятся на вашем устройстве; общая база — в следующей версии.</p>
+</div>
+<div class="m" id="reg"><div>
+<h3 style="margin-top:0">Регистрация</h3>
+<input id="n" placeholder="Имя"><input id="e" type="email" placeholder="Email">
+<select id="r"><option>Ученик</option><option>Студент</option><option>Учитель</option></select>
+<button class="b" style="width:100%;margin-top:8px" onclick="reg()">Войти</button><button class="g" style="width:100%;margin-top:8px" onclick="hide('reg')">Позже</button></div></div>
+<div class="m" id="add"><div>
+<h3 style="margin-top:0">Поделиться материалом</h3>
+<input id="at" placeholder="Название"><select id="ac"></select><select id="ak" onchange="akv()"><option value="text">Написать текст</option><option value="link">Ссылка</option><option value="photo">Фото</option></select><textarea id="ax" rows="5" placeholder="Содержимое: текст книги, конспекта, статьи…"></textarea><input id="al" placeholder="https://…" style="display:none"><input id="ap" type="file" accept="image/*" style="display:none"><small style="color:var(--mu)">🔒 Материал открывается только внутри StudyHub: без скачивания и с водяным знаком читателя.</small>
+<button class="b" style="width:100%;margin-top:8px" onclick="addIt()">Добавить</button>
+<button class="g" style="width:100%;margin-top:8px" onclick="hide('add')">Отмена</button></div></div>
+<div class="m" id="ds"><div id="dsb"></div></div>
+<div class="m" id="vw"><div id="vwb"></div></div>
+<div id="t"></div>
+<script>
+const CATS=["Книги","Пробники IELTS","Статьи","Проекты","Журналы","Газеты","Конспекты","Конкурсы","Олимпиады","🏆 Рейтинг","👤 Кабинет"];
+const COL={"Книги":"#ff7a7a","Пробники IELTS":"#6ea8ff","Статьи":"#4fe0a8","Проекты":"#ffb347","Журналы":"#b99aff","Газеты":"#ff8fc7","Конспекты":"#5fd8f0","Конкурсы":"#ffd93d","Олимпиады":"#ff9f68","🏆 Рейтинг":"#ffb347","👤 Кабинет":"#b99aff"};
+const D={
+"Книги":["Каштанка — А. Чехов","Слова назидания (избранное) — Абай","Шинель — Н. Гоголь","Муму — И. Тургенев","Хамелеон — А. Чехов","Ёж — рассказы Бианки","Старик и море — Э. Хемингуэй (кратко)","Кому на Руси жить хорошо (отрывки)","Ромео и Джульетта (краткий пересказ)","Бедные люди — Ф. Достоевский","Белый клык (адаптация)","Дубровский — А. Пушкин (кратко)","Капитанская дочка (кратко)","Рассказы о Ходже Насреддине","Кобыланды батыр (эпос)","Алпамыс батыр (эпос)","Три мушкетёра (адаптация)","Остров сокровищ (адаптация)","Анна Каренина (краткое содержание)","Маленький принц — разбор"],
+"Пробники IELTS":["Reading Practice Test 1","Reading Practice Test 2","Listening Practice Test 1","Listening Practice Test 2","Writing Task 1 — образцы","Writing Task 2 — эссе 7.0+","Speaking Part 1 — вопросы","Speaking Part 2 — карточки","Academic Vocabulary 500","Grammar for IELTS","Full Mock Test A","Full Mock Test B","Listening Section 3 тренинг","Reading: True/False/NG","Band 8 — разбор ошибок"],
+"Статьи":["Как учиться эффективнее: метод Фейнмана","ИИ в школе: плюсы и минусы","Как писать эссе по английскому","Подготовка к НИШ: советы выпускников","Тайм-менеджмент для школьника","Как выбрать вуз в Казахстане","Гранты и стипендии: Болашак и другие","Выгорание у студентов","Как составить хорошее резюме","Научная статья: структура","Как готовиться к НЗМ","Публичные выступления без страха","Как читать быстро и запоминать","Плагиат и как его избежать","Сон и оценки"],
+"Проекты":["Проект: Умная урна для сортировки","Проект: Экономика школьной столовой","Проект: Солнечная зарядка","Проект: Экология Тараза","Проект: Сайт школы на HTML","Проект: Анализ качества воды","Проект: Приложение для расписания","Проект: История рода — шежире","Проект: Теплица на Arduino","Проект: Влияние соцсетей на сон","Проект: Бот для олимпиад","Проект: Переработка пластика","Проект: Ветряк из подручных материалов","Проект: Мини-бизнес план","Проект: Робот-пылесос"],
+"Журналы":["Квант — подборка задач","Наука и жизнь — избранное","National Geographic (адаптация)","Forbes Kazakhstan — студентам","Параллели — школьный журнал","Юный техник — схемы","Химия и жизнь — выпуск","Потенциал — математика","Физика для всех","Time for Kids","Биология в школе","Информатика — задачи","Мир космоса","Вокруг света — география","Читаем по-английски"],
+"Газеты":["Егемен Казахстан — разбор","Казахстанская правда — подборка","Zakon.kz — студенческие новости","Тараз — городская газета","Aikyn — выпуск","The Astana Times — для чтения","English Digest — подборка","Новости науки недели","Школьная газета НИШ","Экономика недели","Спорт и школа","Обзор олимпиад месяца","Вестник вузов","Газета «Студент»","Языки мира — выпуск"],
+"Конспекты":["Алгебра 9 класс — конспект","Геометрия: теоремы одним листом","Физика: механика, формулы","Химия: органика схемы","Биология: клетка и ДНК","История Казахстана: даты","Всемирная история: тезисы","География: климаты","Информатика: алгоритмы","Английский: времена глаголов","Казахский язык: септік","Русский: пунктуация","Экономика 1 курс — лекции","Высшая математика: пределы","Психология: основы"]};
+const EV=[["22 окт 2026","Idea Battle — НИШ, Тараз, 14:00"],["ноябрь 2026","Школьный чемпионат по дебатам"],["ноябрь 2026","Конкурс по программированию для школьников"],["декабрь 2026","Конкурс бизнес-идей для школьников"],["декабрь 2026","Конкурс научных проектов школьников"],["февраль 2027","Хакатоны для студентов Казахстана"],["март 2027","Республиканский конкурс эссе"],["март 2027","Соревнования по робототехнике (национальный этап WRO)"],["апрель 2027","Конкурс школьных газет и журналов"],["май 2027","Конкурс научно-популярных видео"],["июнь 2027","Конкурс на образовательный грант по результатам ЕНТ"],["август 2027","Конкурс чтецов ко дню рождения Абая"]];
+const OL=[["сентябрь–октябрь","Школьный этап предметных олимпиад"],["ноябрь–декабрь","Районный (городской) этап олимпиад"],["ноябрь 2026","«Русский медвежонок» — языкознание для всех"],["ноябрь–декабрь","«Британский бульдог» — английский язык"],["январь 2027","Международная олимпиада «Жаутыков»: математика, физика, информатика"],["январь–февраль","Областной этап олимпиад"],["март 2027","Республиканская олимпиада по предметам"],["март 2027","«Кенгуру» — математика для всех"],["апрель 2027","Олимпиады по казахскому, русскому и английскому языкам"],["июль 2027","Международная математическая олимпиада (IMO)"],["июль 2027","Международная олимпиада по физике (IPhO)"],["июль 2027","Международная олимпиада по химии (IChO)"],["июль 2027","Международная олимпиада по биологии (IBO)"],["июль 2027","Олимпиада «Туймаада»: математика, информатика, физика, химия"],["август 2027","Международная олимпиада по информатике (IOI)"]];
+const T={
+"Каштанка — А. Чехов":"«Каштанка» — рассказ А. Чехова (1887), краткое содержание.\n\nРыжая собака Каштанка живёт у столяра, который её бьёт, но кормит. Во время прогулки она теряется в городе, и её подбирает незнакомец, дрессировщик. В его доме живут гусь, кот и свинья, а Каштанку переименовывают в Тётку и учат выступать в цирке. Услышав на представлении голос прежнего хозяина, она бросается к нему и уходит с ним домой.\n\nТемы: верность, привязанность, цена доброты и грубости.\n\nДля обсуждения: почему Каштанка выбрала бедного хозяина, а не сытую жизнь у дрессировщика?",
+"Хамелеон — А. Чехов":"«Хамелеон» — рассказ А. Чехова (1884), краткое содержание.\n\nПолицейский надзиратель Очумелов идёт по рыночной площади, где мастер Хрюкин жалуется, что его укусила собака. Очумелов сразу грозится наказать хозяина пса, но каждый раз, когда прохожие называют другого владельца, меняет мнение. Узнав, что собака, возможно, генеральская, он начинает обвинять Хрюкина. Ветер вокруг него то дует, то стихает, а решения меняются вместе с ним.\n\nТемы: угодничество перед начальством, приспособленчество, несправедливость.\n\nДля обсуждения: почему рассказ называется «Хамелеон»?",
+"Шинель — Н. Гоголь":"«Шинель» — повесть Н. Гоголя (1842), краткое содержание.\n\nМелкий чиновник Акакий Акакиевич переписывает бумаги, и над ним смеются коллеги. Старая шинель окончательно износилась, и он копит на новую. Обновку отмечают на вечере, но по дороге домой её отбирают грабители. Чиновник просит помощи у важного лица, получает грубый отказ, заболевает и умирает. Потом по городу ходит призрак, который снимает шинели с прохожих.\n\nТемы: «маленький человек», равнодушие общества, бюрократия.\n\nДля обсуждения: что значит шинель для героя?",
+"Муму — И. Тургенев":"«Муму» — рассказ И. Тургенева (1854), краткое содержание.\n\nГлухонемой дворник Герасим служит у барыни в Москве. Он любит прачку Татьяну, но барыня выдаёт её за пьяницу Капитона. Герасим находит щенка Муму, выхаживает его, и собака становится его единственным другом. Барыне мешает лай, она требует избавиться от собаки. Герасим сам топит Муму, после чего уходит из Москвы в деревню.\n\nТемы: крепостное право, произвол, одиночество.\n\nДля обсуждения: почему Герасим подчиняется, хотя он очень силён?",
+"Дубровский — А. Пушкин (кратко)":"«Дубровский» — роман А. Пушкина, краткое содержание.\n\nПомещик Троекуров из прихоти отбирает имение у соседа Андрея Дубровского через суд. Отец умирает, а сын Владимир сжигает дом и уходит с крестьянами разбойничать. Под видом учителя-француза он попадает в дом Троекурова и влюбляется в его дочь Машу. Он опаздывает: её уже выдали замуж за князя Верейского, и Дубровский распускает шайку и исчезает.\n\nТемы: честь, произвол богатых, судьба и выбор.\n\nДля обсуждения: можно ли оправдать Дубровского?",
+"Капитанская дочка (кратко)":"«Капитанская дочка» — повесть А. Пушкина (1836), краткое содержание.\n\nМолодой дворянин Пётр Гринёв едет служить в Белогорскую крепость и влюбляется в Машу, дочь коменданта. По дороге вьюга вывела его к незнакомцу, которому он дарит тулуп. Позже тот оказывается Пугачёвым. Когда крепость захвачена, Гринёв отказывается присягнуть самозванцу, а Швабрин переходит на его сторону. Маша добивается оправдания Гринёва у императрицы.\n\nТемы: честь, долг, милосердие, народное восстание.\n\nДля обсуждения: почему Пугачёв помогает Гринёву?",
+"Ромео и Джульетта (краткий пересказ)":"«Ромео и Джульетта» — трагедия У. Шекспира, краткий пересказ.\n\nВ Вероне враждуют семьи Монтекки и Капулетти, а их дети, Ромео и Джульетта, влюбляются друг в друга и тайно венчаются. После драки Ромео убивает Тибальта и его изгоняют. Джульетте хотят выдать замуж за Париса, и она выпивает снадобье, после которого кажется мёртвой. Ромео не получает письмо с объяснением, видит её в склепе и принимает яд. Очнувшись, Джульетта закалывается, и семьи мирятся.\n\nТемы: любовь и вражда, случайность и судьба.\n\nДля обсуждения: кто виноват в трагедии?",
+"Маленький принц — разбор":"«Маленький принц» — сказка-притча А. де Сент-Экзюпери, разбор.\n\nЛётчик терпит аварию в Сахаре и встречает мальчика с крошечной планеты. Тот рассказывает о капризной розе, о странных взрослых на разных планетах и о лисе, который учит его, что значит «приручить». Принц возвращается к своей розе, а лётчик остаётся с воспоминаниями.\n\nТемы: дружба, ответственность за тех, кого любишь, взгляд взрослых на мир.\n\nДля обсуждения: чему принц учится у лиса и розы?",
+"Старик и море — Э. Хемингуэй (кратко)":"«Старик и море» — повесть Э. Хемингуэя (1952), краткое содержание.\n\nКубинский рыбак Сантьяго 84 дня не ловит рыбы. Он уходит далеко в море и три дня борется с огромной рыбой марлином. Старик побеждает, но на обратном пути акулы съедают добычу. Он возвращается в порт с одним скелетом, а мальчик Манолин обещает снова плавать с ним.\n\nТемы: стойкость, достоинство, победа и поражение.\n\nДля обсуждения: проиграл ли Сантьяго?",
+"Слова назидания (избранное) — Абай":"«Слова назидания» (Қара сөздер) — книга Абая из 45 слов, написанных в последние годы жизни.\n\nЭто короткие философские размышления в прозе. Абай говорит о труде, знании, честности и справедливости, критикует лень, хвастовство и пустые разговоры, зовёт учиться у других народов и не терять человечность.\n\nКак читать: берите по одному слову, выписывайте главную мысль и приводите пример из жизни.\n\nДля обсуждения: какие советы Абая актуальны сегодня?"};
+const ST="shub_v1",S=(()=>{try{return JSON.parse(localStorage.getItem(ST))||{}}catch(e){return{}}})();
+let DB=null,PD=null,UID=null,OT="";const H=x=>{let h=0;for(const c of x)h=(h*31+c.charCodeAt(0))>>>0;return h.toString(36)};
+function save(){let ok=true;try{localStorage.setItem(ST,JSON.stringify(DB?{user:S.user,fav:S.fav}:S))}catch(e){ok=false}if(PD)PD.set({user:S.user||null,fav:S.fav||[]}).catch(()=>{});return DB?true:ok}
+let cur=CATS[0];
+const $=i=>document.getElementById(i),hide=i=>$(i).classList.remove("on"),show=i=>$(i).classList.add("on");
+let TT;function toast(x){const t=$("t");t.textContent=x;t.style.display="block";clearTimeout(TT);TT=setTimeout(()=>t.style.display="none",1800)}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+function head(){$("u").innerHTML=S.user?`<button class="g" onclick="show('add')">+ Добавить</button> <button class="g" onclick="out()">${esc(S.user.n)} · ${esc(S.user.r)} ✕</button>`:`<button class="b" onclick="show('reg')">Войти</button>`}
+function reg(){const n=$("n").value.trim(),e=$("e").value.trim();if(!n||!e){toast("Введите имя и email");return}if(!/^\S+@\S+\.\S+$/.test(e)){toast("Проверьте email");return}S.user={n,e,r:$("r").value};save();hide("reg");head();render();toast("Добро пожаловать, "+n)}
+function out(){if(confirm("Выйти из аккаунта?")){delete S.user;save();head();render()}}
+function akv(){const k=$("ak").value;$("ax").style.display=k==="text"?"":"none";$("al").style.display=k==="link"?"":"none";$("ap").style.display=k==="photo"?"":"none"}
+function img(f){return new Promise((ok,no)=>{const r=new FileReader();r.onload=()=>{const i=new Image();i.onload=()=>{const k=Math.min(1,900/Math.max(i.width,i.height)),c=document.createElement("canvas");c.width=i.width*k;c.height=i.height*k;c.getContext("2d").drawImage(i,0,0,c.width,c.height);ok(c.toDataURL("image/jpeg",.7))};i.onerror=no;i.src=r.result};r.onerror=no;r.readAsDataURL(f)})}
+async function addIt(){const t=$("at").value.trim(),k=$("ak").value,c=$("ac").value;if(!t){toast("Введите название");return}
+let v;try{v=k==="text"?$("ax").value.trim():k==="link"?$("al").value.trim():await img($("ap").files[0])}catch(e){v=""}
+if(!v){toast("Добавьте содержимое: текст, ссылку или фото");return}
+if(k==="link"&&!/^https?:\/\//.test(v)){toast("Ссылка должна начинаться с http");return}
+if(DB){if(v.length>200000){toast("Файл слишком большой");return}const id="m"+Date.now().toString(36)+UID.slice(0,4);try{await DB.collection("materials").doc(id).set({id,c,t:t+" — от "+S.user.n,k,v,uid:UID,ts:Date.now()})}catch(e){toast("Не удалось сохранить");return}}else{(S.my=S.my||[]).push([c,t+" — от "+S.user.n,{k,v}]);if(!save()){S.my.pop();toast("Не хватило места, уменьшите фото");return}}
+hide("add");["at","ax","al","ap"].forEach(i=>$(i).value="");cur=c;tabs();render();toast("Материал добавлен")}
+function tabs(){$("tabs").innerHTML=CATS.map(c=>`<button style="--k:${COL[c]}" class="${c===cur?"on":""}" onclick="cur='${c}';tabs();render()">${c}</button>`).join("");$("ac").innerHTML=CATS.slice(0,7).map(c=>`<option>${c}</option>`).join("")}
+const IN={
+"Книги":["краткое знакомство с произведением для школьников и студентов.","Сначала определите, где и когда происходит действие.","Отметьте главных героев и запишите, чего хочет каждый из них.","Найдите перелом в сюжете: момент, после которого всё меняется.","Подумайте, какую мысль автор хочет донести до читателя.","Выпишите непонятные слова и найдите их значение в словаре."],
+"Пробники IELTS":["практический материал для подготовки к экзамену IELTS.","Выполняйте задания на время, как на реальном экзамене, без подсказок.","После проверки разберите каждую ошибку и запишите правильный вариант.","Выписывайте новые слова и повторяйте их через день.","Считайте баллы и сравнивайте результат с целевым бэндом.","Повторите тест через неделю, чтобы увидеть реальный прогресс."],
+"Статьи":["полезная статья с практическими советами для учёбы.","Прочитайте заголовки и выделите главный тезис автора.","Отметьте три совета, которые можно применить уже сегодня.","Сравните идеи статьи со своим опытом и запишите выводы.","Обсудите спорные места с одноклассниками или учителем.","Вернитесь к статье через неделю и проверьте, что запомнилось."],
+"Проекты":["пример школьного проекта, который можно взять за основу.","Изучите проблему: зачем проект нужен и кому он помогает.","Посмотрите цель, задачи и план работы по этапам.","Обратите внимание на методы: измерения, опросы или расчёты.","Оцените результаты и подумайте, что можно улучшить.","Подготовьте защиту проекта на пять минут."],
+"Журналы":["подборка материалов из журнала для расширения кругозора.","Начните с содержания и выберите самые интересные рубрики.","Читайте по одной статье в день, чтобы не перегружаться.","Выписывайте новые термины и факты для будущих докладов.","Решайте задачи и головоломки из выпуска, если они есть.","Поделитесь самой интересной находкой в обсуждении."],
+"Газеты":["обзор газетных материалов для практики чтения и понимания новостей.","Определите, где факт, а где мнение автора.","Найдите ответы: кто, что, где, когда и почему.","Сравните освещение одной новости в разных изданиях.","Выпишите ключевые слова и составьте краткий пересказ.","Используйте материал как основу для эссе или дебатов."],
+"Конспекты":["сжатый конспект для быстрого повторения темы.","Сначала просмотрите схему и определения, затем читайте детали.","Выучите формулы и даты, закрывая текст и проверяя себя.","Решите два-три примера по теме, чтобы закрепить понимание.","Дополните конспект своими пометками и примерами.","Повторите тему через день, через неделю и перед экзаменом."]};
+function info(t){if(T[t])return T[t];const c=Object.keys(D).find(k=>D[k].includes(t))||"Статьи",a=IN[c];let h=0;for(const ch of t)h=(h*31+ch.charCodeAt(0))>>>0;
+const p=a.slice(1),r=h%p.length,o=p.slice(r).concat(p.slice(0,r));
+return"«"+t+"» — "+a[0]+"\n\nКак работать с материалом:\n"+o.map((x,i)=>(i+1)+". "+x).join("\n")+"\n\nЭто краткое описание-пример. Если материал помог, оставьте оценку и эмоцию в разделе «Обсудить», добавьте его в избранное и порекомендуйте друзьям."}
+function openIt(t){if(!S.user){show("reg");return}const x=(S.my||[]).find(y=>y[1]===t);const {k,v}=x&&x[2]?x[2]:{k:"text",v:info(t)},w=esc(S.user.n+" · "+S.user.e),wm=`<div class="wm">${(w+"   ").repeat(60)}</div>`;
+$("vwb").innerHTML=`<h3 style="margin-top:0">${esc(t)}</h3><div class="vc" oncontextmenu="return false" oncopy="return false">${k==="text"?`<div style="white-space:pre-wrap">${esc(v)}</div>`:k==="photo"?`<img src="${v}" draggable="false" style="max-width:100%">`:`<p>Автор прикрепил ссылку. Доступ по ней контролирует автор.</p><a class="b" style="display:inline-block;text-decoration:none" href="${esc(v)}" target="_blank" rel="noopener noreferrer">Перейти по ссылке</a>`}${wm}</div><button class="g" style="width:100%;margin-top:8px" onclick="rep()">⚑ Пожаловаться</button><button class="g" style="width:100%;margin-top:8px" onclick="hide('vw')">Закрыть</button>`;show("vw")}
+function render(){const q=$("q").value.toLowerCase();
+if(cur===RT){topView();return}if(cur===CB){cabView();return}
+if(cur==="Конкурсы"||cur==="Олимпиады"){const L=(cur==="Олимпиады"?OL:EV).filter(e=>(e[0]+" "+e[1]).toLowerCase().includes(q));$("main").innerHTML=L.map(e=>`<div class="ev"><i>${e[0]}</i><span>${e[1]}</span></div>`).join("")||"<p>Ничего не найдено</p>";return}
+const items=(D[cur]||[]).concat((S.my||[]).filter(x=>x[0]===cur).map(x=>x[1])).filter(x=>x.toLowerCase().includes(q));
+$("main").innerHTML=`<div class="grid">${items.map(t=>`<div class="c" style="--k:${COL[cur]}"><small>${cur}</small><h3>${esc(t)}</h3><small>${stars(t)}</small><button class="b" onclick="openIt(this.dataset.t)" data-t="${esc(t)}">Открыть</button><div class="row"><button class="g" onclick="disc(this.dataset.t)" data-t="${esc(t)}">💬 Обсудить</button><button class="g" onclick="fav(this.dataset.t)" data-t="${esc(t)}">${S.fav&&S.fav.includes(t)?"❤️":"🤍"}</button></div></div>`).join("")||"<p>Ничего не найдено</p>"}</div>`}
+const RT="🏆 Рейтинг",CB="👤 Кабинет",EM=["😍","😢","😮","😴","🔥","🤔"];let DT="",DS=0,DE="";
+function base(t){let h=0;for(const c of t)h=(h*31+c.charCodeAt(0))>>>0;return{n:5+h%36,a:3.8+(h%12)/10}}
+function rate(t){const b=base(t),r=(S.rv&&S.rv[t])||[],s=r.reduce((x,y)=>x+y.s,0);return{a:(b.a*b.n+s)/(b.n+r.length),n:b.n+r.length}}
+function stars(t){const r=rate(t);return'<span class="gr">'+r.a.toFixed(1)+"</span>"+r.n+" "+pl(r.n)}
+function pl(n){const a=n%100,b=n%10;return a>10&&a<15?"оценок":b==1?"оценка":b>1&&b<5?"оценки":"оценок"}
+function allT(){return Object.values(D).flat().concat((S.my||[]).map(x=>x[1]))}
+function fav(t){if(!S.user){show("reg");return}S.fav=S.fav||[];const i=S.fav.indexOf(t);i<0?S.fav.push(t):S.fav.splice(i,1);save();render()}
+function disc(t){if(!S.user){show("reg");return}DT=t;DS=0;DE="";dview();show("ds")}
+function dview(){const k=$("dc")?$("dc").value:"",r=(S.rv&&S.rv[DT])||[];
+$("dsb").innerHTML=`<h3 style="margin-top:0">${esc(DT)}</h3><small>${stars(DT)}</small><div>${r.map(x=>`<div class="msg">${x.e} ${"⭐".repeat(x.s)} <b>${esc(x.u)}</b>\n${esc(x.c)}</div>`).join("")||"<p>Пока нет обсуждений. Будьте первым!</p>"}</div><b>Ваша оценка</b><div class="row">${[1,2,3,4,5].map(i=>`<button class="${i<=DS?"b":"g"}" onclick="DS=${i};dview()">★</button>`).join("")}</div><b>Эмоция</b><div class="row" style="flex-wrap:wrap">${EM.map(e=>`<button class="${e===DE?"b":"g"}" onclick="DE='${e}';dview()">${e}</button>`).join("")}</div><input id="dc" placeholder="Ваши впечатления…"><button class="b" style="width:100%" onclick="post()">Опубликовать</button><button class="g" style="width:100%;margin-top:8px" onclick="hide('ds')">Закрыть</button>`;$("dc").value=k}
+function post(){const c=$("dc").value.trim();if(!DS){toast("Поставьте оценку");return}if(!c){toast("Напишите отзыв");return}const o={u:S.user.n,s:DS,e:DE||"🙂",c};let nw=true;if(DB){nw=!((S.rv&&S.rv[DT])||[]).some(x=>x.uid===UID);DB.collection("reviews").doc(H(DT)+"_"+UID).set({...o,t:DT,uid:UID,ts:Date.now()}).catch(()=>toast("Не удалось сохранить"))}else{S.rv=S.rv||{};const a=(S.rv[DT]=S.rv[DT]||[]),i=a.findIndex(x=>x.u===S.user.n);nw=i<0;i<0?a.push(o):a[i]=o;save()}DS=0;DE="";$("dc").value="";dview();render();toast(nw?"Отзыв опубликован":"Отзыв обновлён")}
+function topView(){const l=allT().map(t=>[t,rate(t)]).sort((x,y)=>y[1].a-x[1].a).slice(0,10);$("main").innerHTML=l.map((x,i)=>`<div class="ev"><i>#${i+1}</i><span>${esc(x[0])}<br><small>${stars(x[0])}</small></span></div>`).join("")}
+function cabView(){if(!S.user){$("main").innerHTML='<p>Войдите, чтобы открыть кабинет.</p><button class="b" onclick="show(\'reg\')">Войти</button>';return}
+const f=S.fav||[],m=(S.my||[]).filter(x=>!DB||x[4]===UID),rv=Object.entries(S.rv||{}).flatMap(([t,a])=>a.filter(x=>x.u===S.user.n).map(x=>[t,x]));
+$("main").innerHTML=`<div class="ai"><b>${esc(S.user.n)}</b> · ${esc(S.user.r)}<br><small>${esc(S.user.e)}</small></div><h3>❤️ Избранное (${f.length})</h3><div class="grid">${f.map(t=>`<div class="c"><h3>${esc(t)}</h3><small>${stars(t)}</small><button class="g" onclick="fav(this.dataset.t)" data-t="${esc(t)}">Убрать</button></div>`).join("")||"<p>Нажмите 🤍 на карточке</p>"}</div><h3>💬 Мои отзывы (${rv.length})</h3>${rv.map(([t,x])=>`<div class="msg">${x.e} ${"⭐".repeat(x.s)} ${esc(t)}\n${esc(x.c)}</div>`).join("")}<h3>📤 Мои материалы (${m.length})</h3>${m.map(x=>`<div class="msg">${esc(x[1])} <small>(${x[0]})</small>${x[3]?`<br><button class="g" onclick="delM('${x[3]}')">Удалить</button>`:""}</div>`).join("")}`}
+document.querySelectorAll(".m").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)hide(m.id)}));document.addEventListener("keydown",e=>{if(e.key==="Escape")document.querySelectorAll(".m.on").forEach(m=>hide(m.id))});
+$("q").oninput=render;tabs();head();render();setTimeout(()=>{if(!S.user)show("reg")},1500);
+const _o=openIt;openIt=function(t){OT=t;return _o(t)};
+function rep(){if(!DB){toast("Спасибо, мы проверим");return}DB.collection("reports").doc("r"+Date.now().toString(36)+UID.slice(0,4)).set({t:OT,uid:UID,ts:Date.now()}).then(()=>toast("Жалоба отправлена")).catch(()=>toast("Не удалось отправить"))}
+function delM(id){if(confirm("Удалить материал?"))DB.collection("materials").doc(id).delete().catch(()=>toast("Нельзя удалить"))}
+async function initDb(){try{const db=await claude.use("db"),u=await claude.use("user");if(!db||!u)return;const id=await u.id();if(!id)return;DB=db;UID=id;PD=db.collection("data/users/"+id).doc("profile");
+const p=await PD.get();if(p.exists){const d=p.data();if(d.user)S.user=d.user;S.fav=d.fav||[]}else if(S.user||S.fav)save();
+head();render();
+db.collection("materials").onSnapshot(sn=>{S.my=sn.docs.map(d=>d.data()).sort((a,b)=>a.ts-b.ts).map(d=>[d.c,d.t,{k:d.k,v:d.v},d.id,d.uid]);render()});
+db.collection("reviews").onSnapshot(sn=>{const r={};sn.docs.map(d=>d.data()).sort((a,b)=>a.ts-b.ts).forEach(d=>(r[d.t]=r[d.t]||[]).push({u:d.u,s:d.s,e:d.e,c:d.c,uid:d.uid}));S.rv=r;render();if($("ds").classList.contains("on"))dview()})}catch(e){}}
+initDb();
+</script></body></html>
